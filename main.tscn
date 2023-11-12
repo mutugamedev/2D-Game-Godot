@@ -6,17 +6,17 @@
 script = ExtResource("1_xhla8")
 
 [node name="Play" type="Button" parent="."]
-offset_left = 481.0
-offset_top = 161.0
-offset_right = 689.0
-offset_bottom = 261.0
+offset_left = 536.0
+offset_top = 208.0
+offset_right = 744.0
+offset_bottom = 308.0
 text = "Play"
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 481.0
-offset_top = 297.0
-offset_right = 689.0
-offset_bottom = 397.0
+offset_left = 536.0
+offset_top = 344.0
+offset_right = 744.0
+offset_bottom = 444.0
 text = "Quit"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
