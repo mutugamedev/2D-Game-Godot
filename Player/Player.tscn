@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://kxn5xhe8e41g" path="res://assets/sprites/Player/run/player-run-6.png" id="15_w80ch"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_skgmp"]
-radius = 9.0
+radius = 8.0
 height = 24.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t7o1x"]
@@ -85,6 +85,36 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_vhp1j"]
+resource_name = "Death"
+
+[sub_resource type="Animation" id="Animation_vd5q1"]
+resource_name = "Fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"Jump"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+
 [sub_resource type="Animation" id="Animation_4jse4"]
 resource_name = "Idle"
 length = 0.4
@@ -141,6 +171,21 @@ tracks/1/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_a6v28"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+
 [sub_resource type="Animation" id="Animation_pt4dy"]
 resource_name = "Run"
 length = 0.55
@@ -170,51 +215,6 @@ tracks/1/keys = {
 "values": [&"Run"]
 }
 
-[sub_resource type="Animation" id="Animation_vhp1j"]
-resource_name = "Death"
-
-[sub_resource type="Animation" id="Animation_a6v28"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_vd5q1"]
-resource_name = "Fall"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [&"Jump"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5k4rh"]
 _data = {
 "Death": SubResource("Animation_vhp1j"),
@@ -229,23 +229,22 @@ _data = {
 script = ExtResource("1_4ykg8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(467, 303)
 shape = SubResource("CapsuleShape2D_skgmp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(468, 299)
+position = Vector2(0.5, -4)
 sprite_frames = SubResource("SpriteFrames_t7o1x")
 animation = &"Idle"
 frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(467, 303)
+position = Vector2(0, 2)
 zoom = Vector2(1.6, 1.6)
+limit_left = 0
+limit_top = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_5k4rh")
 }
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
